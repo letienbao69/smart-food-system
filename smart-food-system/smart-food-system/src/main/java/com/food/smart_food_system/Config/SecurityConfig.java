@@ -43,15 +43,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
 
-                        // Cho xem danh mục và món ăn
                         .requestMatchers(HttpMethod.GET, "/api/categories/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/foods/**").permitAll()
-
-                        // Tạm mở để bạn test CRUD bằng Postman
                         .requestMatchers(HttpMethod.POST, "/api/categories/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/categories/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/categories/**").permitAll()
 
+                        .requestMatchers(HttpMethod.GET, "/api/foods/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/foods/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/foods/**").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/api/foods/**").permitAll()
@@ -59,6 +56,12 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/carts/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/carts/**").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/api/carts/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/carts/**").permitAll()
+
+                        .requestMatchers(HttpMethod.GET, "/api/orders/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/orders/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/orders/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/orders/**").permitAll()
 
                         .anyRequest().authenticated()
                 );
