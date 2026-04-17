@@ -3,7 +3,7 @@ package com.food.smart_food_system.Controller;
 import com.food.smart_food_system.DTO.CategoryDTO;
 import com.food.smart_food_system.DTO.CreateCategoryRequest;
 import com.food.smart_food_system.DTO.UpdateCategoryRequest;
-import com.food.smart_food_system.Service.CategoryService;
+import com.food.smart_food_system.Service.impl.CategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryServiceImpl categoryService;
 
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> getAllCategories() {
@@ -39,9 +39,14 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.updateCategory(id, request));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
-        categoryService.deleteCategory(id);
-        return ResponseEntity.ok("Xóa danh mục thành công");
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<String> deleteCategory(@PathVariable Long id) {
+//        categoryService.deleteCategory(id);
+//        return ResponseEntity.ok("Xóa danh mục thành công");
+//    }
+
+    @DeleteMapping("/{ids}")
+    private void deleteBuilding(@PathVariable List<Long> ids){
+        categoryService.deleteAll(ids);
     }
 }
